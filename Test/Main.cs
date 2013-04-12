@@ -1,7 +1,7 @@
 using System;
 using Gtk;
 
-namespace Test
+namespace CBS
 {
 	class MainClass
 	{

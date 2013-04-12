@@ -3,6 +3,8 @@ using Gtk;
 using System.IO;
 using System.Threading;
 using System.Timers;
+using Google.KML;
+using CBS;
 
 public partial class MainWindow: Gtk.Window
 {	
@@ -11,6 +13,8 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		MainTimer = new System.Timers.Timer (1000); // Set up the timer for 3 seconds
+		MainTimer.Elapsed += new ElapsedEventHandler (_timer_Elapsed);
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -21,25 +25,45 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnButton3Clicked (object sender, EventArgs e)
 	{
-		MainTimer = new System.Timers.Timer (1000); // Set up the timer for 3 seconds
-		//
-		// Type "_timer.Elapsed += " and press tab twice.
-		//
-		MainTimer.Elapsed += new ElapsedEventHandler (_timer_Elapsed);
-		MainTimer.Enabled = true; // Enable it
 
-		MessageDialog MS = new MessageDialog(this,DialogFlags.DestroyWithParent,
+
+	}
+
+	private void DisplayMessage (string Msg_In)
+	{
+		MessageDialog MS = new MessageDialog (this, DialogFlags.DestroyWithParent,
 		                                     MessageType.Other,
 		                                     ButtonsType.Ok,
-		                                     "Test");
+		                                     Msg_In);
 		MS.Visible = true;
-		int t = MS.Run();
-		MS.Destroy();
-
+		MS.Run ();
+		MS.Destroy ();
 	}
 
+	////////////////////////////////////////////////////////////////
+	// This is the main timer that gets enabled once the user
+	// starts proccesing. It will handle all periodical events
+	//
 	void _timer_Elapsed (object sender, ElapsedEventArgs e)
 	{
-		this.label1.Text = DateTime.Now.ToLongTimeString();                              
+		                           
 	}
+
+	protected void OnBtnStartStopClicked (object sender, EventArgs e)
+	{
+		if (this.btn_Start_Stop.Label == "Start") {
+
+			this.btn_Start_Stop.Label = "Stop";
+			MainTimer.Enabled = true; 
+			CBS.FileWatcher.CreateWatcher(this.textBox_Source_Destination.Text);
+
+		} else {
+
+			this.btn_Start_Stop.Label = "Start";
+			MainTimer.Enabled = false;
+			CBS.FileWatcher.StopWatcher();
+		}
+
+	}
+
 }

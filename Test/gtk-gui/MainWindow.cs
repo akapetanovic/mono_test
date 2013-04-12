@@ -5,15 +5,18 @@ public partial class MainWindow
 {
 	private global::Gtk.Alignment alignment1;
 	private global::Gtk.Fixed fixed3;
-	private global::Gtk.Button button3;
+	private global::Gtk.Entry textBox_Source_Destination;
 	private global::Gtk.Label label1;
+	private global::Gtk.Label label2;
+	private global::Gtk.Entry txt_Box_Destination;
+	private global::Gtk.Button btn_Start_Stop;
 	
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
+		this.Title = global::Mono.Unix.Catalog.GetString ("CBS 1.0");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
@@ -23,33 +26,67 @@ public partial class MainWindow
 		this.fixed3.Name = "fixed3";
 		this.fixed3.HasWindow = false;
 		// Container child fixed3.Gtk.Fixed+FixedChild
-		this.button3 = new global::Gtk.Button ();
-		this.button3.CanFocus = true;
-		this.button3.Name = "button3";
-		this.button3.UseUnderline = true;
-		this.button3.Label = global::Mono.Unix.Catalog.GetString ("Test Button");
-		this.fixed3.Add (this.button3);
-		global::Gtk.Fixed.FixedChild w1 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.button3]));
-		w1.X = 9;
-		w1.Y = 13;
+		this.textBox_Source_Destination = new global::Gtk.Entry ();
+		this.textBox_Source_Destination.WidthRequest = 300;
+		this.textBox_Source_Destination.CanFocus = true;
+		this.textBox_Source_Destination.Name = "textBox_Source_Destination";
+		this.textBox_Source_Destination.Text = global::Mono.Unix.Catalog.GetString ("/home/bosnia/EFD/");
+		this.textBox_Source_Destination.IsEditable = true;
+		this.textBox_Source_Destination.InvisibleChar = '•';
+		this.fixed3.Add (this.textBox_Source_Destination);
+		global::Gtk.Fixed.FixedChild w1 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.textBox_Source_Destination]));
+		w1.X = 10;
+		w1.Y = 32;
 		// Container child fixed3.Gtk.Fixed+FixedChild
 		this.label1 = new global::Gtk.Label ();
-		this.label1.WidthRequest = 100;
+		this.label1.WidthRequest = 150;
 		this.label1.Name = "label1";
-		this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("123456789");
+		this.label1.LabelProp = global::Mono.Unix.Catalog.GetString ("Source directory");
 		this.fixed3.Add (this.label1);
 		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.label1]));
-		w2.X = 101;
-		w2.Y = 18;
+		w2.X = -1;
+		w2.Y = 11;
+		// Container child fixed3.Gtk.Fixed+FixedChild
+		this.label2 = new global::Gtk.Label ();
+		this.label2.WidthRequest = 150;
+		this.label2.Name = "label2";
+		this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Destination directory");
+		this.fixed3.Add (this.label2);
+		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.label2]));
+		w3.X = 12;
+		w3.Y = 63;
+		// Container child fixed3.Gtk.Fixed+FixedChild
+		this.txt_Box_Destination = new global::Gtk.Entry ();
+		this.txt_Box_Destination.WidthRequest = 300;
+		this.txt_Box_Destination.CanFocus = true;
+		this.txt_Box_Destination.Name = "txt_Box_Destination";
+		this.txt_Box_Destination.Text = global::Mono.Unix.Catalog.GetString ("/var/cbs/prediction/flights/");
+		this.txt_Box_Destination.IsEditable = true;
+		this.txt_Box_Destination.InvisibleChar = '•';
+		this.fixed3.Add (this.txt_Box_Destination);
+		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.txt_Box_Destination]));
+		w4.X = 9;
+		w4.Y = 80;
+		// Container child fixed3.Gtk.Fixed+FixedChild
+		this.btn_Start_Stop = new global::Gtk.Button ();
+		this.btn_Start_Stop.WidthRequest = 60;
+		this.btn_Start_Stop.CanFocus = true;
+		this.btn_Start_Stop.Name = "btn_Start_Stop";
+		this.btn_Start_Stop.UseUnderline = true;
+		this.btn_Start_Stop.Label = global::Mono.Unix.Catalog.GetString ("Start");
+		this.fixed3.Add (this.btn_Start_Stop);
+		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.btn_Start_Stop]));
+		w5.X = 9;
+		w5.Y = 119;
 		this.alignment1.Add (this.fixed3);
 		this.Add (this.alignment1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 412;
-		this.DefaultHeight = 372;
+		this.DefaultWidth = 321;
+		this.DefaultHeight = 189;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
-		this.button3.Clicked += new global::System.EventHandler (this.OnButton3Clicked);
+		this.btn_Start_Stop.Clicked += new global::System.EventHandler (this.OnBtnStartStopClicked);
 	}
 }

@@ -1,13 +1,30 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Test/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/EFD MESSAGE/EFD_File_Handler.cs">
     <Files>
-      <File FileName="Test/Main.cs" Line="13" Column="23" />
-      <File FileName="Test/MainWindow.cs" Line="26" Column="3" />
+      <File FileName="Test/EFD MESSAGE/EFD_Msg.cs" Line="13" Column="11" />
+      <File FileName="Test/DATA OUTPUT/Generate_Output.cs" Line="5" Column="37" />
+      <File FileName="Test/File Watcher/FileWatcher.cs" Line="38" Column="36" />
+      <File FileName="Test/EFD MESSAGE/EFD_File_Handler.cs" Line="22" Column="22" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="CBS" expanded="True">
+            <Node name="EFD MESSAGE" expanded="True">
+              <Node name="EFD_File_Handler.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/mnt/hgfs/MONO/Mono_Test/Test/MainWindow.cs" line="64" />
+      <Breakpoint file="/mnt/hgfs/MONO/Mono_Test/Test/EFD MESSAGE/EFD_Msg.cs" line="35" />
+      <Breakpoint file="/mnt/hgfs/MONO/Mono_Test/Test/EFD MESSAGE/EFD_Msg.cs" line="28" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

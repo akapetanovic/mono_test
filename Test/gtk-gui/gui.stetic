@@ -8,9 +8,9 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/Test.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="412 372">
+  <widget class="Gtk.Window" id="MainWindow" design-size="321 189">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="Title" translatable="yes">CBS 1.0</property>
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
@@ -21,28 +21,68 @@
             <property name="MemberName" />
             <property name="HasWindow">False</property>
             <child>
-              <widget class="Gtk.Button" id="button3">
+              <widget class="Gtk.Entry" id="textBox_Source_Destination">
                 <property name="MemberName" />
+                <property name="WidthRequest">300</property>
                 <property name="CanFocus">True</property>
-                <property name="Type">TextOnly</property>
-                <property name="Label" translatable="yes">Test Button</property>
-                <property name="UseUnderline">True</property>
-                <signal name="Clicked" handler="OnButton3Clicked" />
+                <property name="Text" translatable="yes">/home/bosnia/EFD/</property>
+                <property name="IsEditable">True</property>
+                <property name="InvisibleChar">•</property>
               </widget>
               <packing>
-                <property name="X">9</property>
-                <property name="Y">13</property>
+                <property name="X">10</property>
+                <property name="Y">32</property>
               </packing>
             </child>
             <child>
               <widget class="Gtk.Label" id="label1">
                 <property name="MemberName">label1</property>
-                <property name="WidthRequest">100</property>
-                <property name="LabelProp" translatable="yes">123456789</property>
+                <property name="WidthRequest">150</property>
+                <property name="LabelProp" translatable="yes">Source directory</property>
               </widget>
               <packing>
-                <property name="X">101</property>
-                <property name="Y">18</property>
+                <property name="X">-1</property>
+                <property name="Y">11</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Label" id="label2">
+                <property name="MemberName" />
+                <property name="WidthRequest">150</property>
+                <property name="LabelProp" translatable="yes">Destination directory</property>
+              </widget>
+              <packing>
+                <property name="X">12</property>
+                <property name="Y">63</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Entry" id="txt_Box_Destination">
+                <property name="MemberName" />
+                <property name="WidthRequest">300</property>
+                <property name="CanFocus">True</property>
+                <property name="Text" translatable="yes">/var/cbs/prediction/flights/</property>
+                <property name="IsEditable">True</property>
+                <property name="InvisibleChar">•</property>
+              </widget>
+              <packing>
+                <property name="X">9</property>
+                <property name="Y">80</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="btn_Start_Stop">
+                <property name="MemberName" />
+                <property name="WidthRequest">60</property>
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Start</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnStartStopClicked" />
+              </widget>
+              <packing>
+                <property name="X">9</property>
+                <property name="Y">119</property>
               </packing>
             </child>
           </widget>

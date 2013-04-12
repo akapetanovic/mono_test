@@ -57,6 +57,12 @@
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="SharpKml">
+      <HintPath>..\KML\SharpKml.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.KML">
+      <HintPath>..\KML\Google.KML.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -69,6 +75,24 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="GeoCordSystem.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\Angle.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\Ellipsoid.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\GeodeticCalculator.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\GeodeticCurve.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\GeodeticMeasurement.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\GlobalCoordinates.cs" />
+    <Compile Include="MIKE GAVANGHAN - GEODETIC\GlobalPosition.cs" />
+    <Compile Include="File Watcher\FileWatcher.cs" />
+    <Compile Include="EFD MESSAGE\EFD_Msg.cs" />
+    <Compile Include="EFD MESSAGE\EFD_File_Handler.cs" />
+    <Compile Include="DATA OUTPUT\Generate_Output.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="MIKE GAVANGHAN - GEODETIC\" />
+    <Folder Include="File Watcher\" />
+    <Folder Include="EFD MESSAGE\" />
+    <Folder Include="DATA OUTPUT\" />
+  </ItemGroup>
 </Project>

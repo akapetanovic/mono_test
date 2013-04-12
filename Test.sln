@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{BB9ECA67-071B-42B8-9C3D-DA13ECFBA5AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CBS", "Test\CBS.csproj", "{BB9ECA67-071B-42B8-9C3D-DA13ECFBA5AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,6 @@ Global
 		{BB9ECA67-071B-42B8-9C3D-DA13ECFBA5AE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Test\Test.csproj
+		StartupItem = Test\CBS.csproj
 	EndGlobalSection
 EndGlobal
