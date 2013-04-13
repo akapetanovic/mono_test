@@ -85,6 +85,20 @@
                 <property name="Y">119</property>
               </packing>
             </child>
+            <child>
+              <widget class="Gtk.Button" id="btn_Debug">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Debug</property>
+                <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBtnDebugClicked" />
+              </widget>
+              <packing>
+                <property name="X">251</property>
+                <property name="Y">119</property>
+              </packing>
+            </child>
           </widget>
         </child>
       </widget>

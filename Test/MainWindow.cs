@@ -66,4 +66,16 @@ public partial class MainWindow: Gtk.Window
 
 	}
 
+	protected void OnBtnDebugClicked (object sender, EventArgs e)
+	{
+		StreamReader MyStreamReader;
+
+		MyStreamReader = System.IO.File.OpenText ("/home/bosnia/EFD/test.log");
+
+			// Pass in stream reader and initialise new
+			// EFD message. 
+			EFD_Msg EDF_MESSAGE = new EFD_Msg(MyStreamReader);
+	}
+
+
 }

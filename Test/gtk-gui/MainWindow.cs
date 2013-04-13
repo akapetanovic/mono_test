@@ -10,6 +10,7 @@ public partial class MainWindow
 	private global::Gtk.Label label2;
 	private global::Gtk.Entry txt_Box_Destination;
 	private global::Gtk.Button btn_Start_Stop;
+	private global::Gtk.Button btn_Debug;
 	
 	protected virtual void Build ()
 	{
@@ -78,6 +79,16 @@ public partial class MainWindow
 		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.btn_Start_Stop]));
 		w5.X = 9;
 		w5.Y = 119;
+		// Container child fixed3.Gtk.Fixed+FixedChild
+		this.btn_Debug = new global::Gtk.Button ();
+		this.btn_Debug.CanFocus = true;
+		this.btn_Debug.Name = "btn_Debug";
+		this.btn_Debug.UseUnderline = true;
+		this.btn_Debug.Label = global::Mono.Unix.Catalog.GetString ("Debug");
+		this.fixed3.Add (this.btn_Debug);
+		global::Gtk.Fixed.FixedChild w6 = ((global::Gtk.Fixed.FixedChild)(this.fixed3 [this.btn_Debug]));
+		w6.X = 251;
+		w6.Y = 119;
 		this.alignment1.Add (this.fixed3);
 		this.Add (this.alignment1);
 		if ((this.Child != null)) {
@@ -88,5 +99,6 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.btn_Start_Stop.Clicked += new global::System.EventHandler (this.OnBtnStartStopClicked);
+		this.btn_Debug.Clicked += new global::System.EventHandler (this.OnBtnDebugClicked);
 	}
 }

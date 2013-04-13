@@ -22,7 +22,8 @@ namespace CBS
 				Basic,
 				Entry,
 				Exit
-			};
+			}
+			;
 
 			public string Name = "N/A";
 			private GeoCordSystemDegMinSecUtilities.LatLongClass Position;
@@ -41,15 +42,37 @@ namespace CBS
 		public EFD_Msg (StreamReader Reader)
 		{
 			string OneLine;
-			char[] delimiterChars = { ',', '\t' };
+			char[] delimiterChars = { ' ' };
 
 			// Parse the file and extract all data needed by
 			// CBS
-			while (Reader.Peek() >= 0)
+			while (Reader.Peek() >= 0) 
 			{
 				OneLine = Reader.ReadLine ();
 				string[] Words = OneLine.Split (delimiterChars);
-			
+
+				switch (Words [0]) {
+				case "-IFPLID":
+					IFPLID = Words [1];
+					break;
+				case "-ARCID":
+					CALLSIGN = Words [1];
+					break;
+				case "-ADEP":
+					CALLSIGN = Words [1];
+					break;
+				case "-ADES":
+					ADES = Words [1];
+					break;
+				case "-EOBT":
+					EOBT = Words [1];
+					break;
+				case "-EOBD":
+					EOBD = Words [1];
+					break;
+				default:
+					break;
+				}
 			}
 		}
 	}
