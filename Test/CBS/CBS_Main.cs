@@ -6,8 +6,9 @@ using System.Timers;
 
 namespace CBS
 {
-    class CBS_Common
+    class CBS_Main
     {
+        private static bool FileWatcherEnabled = true;
         // WINDOWS
         //
         // Will get changed to LINUX paths on Initialise if APP is running
@@ -17,10 +18,10 @@ namespace CBS
         private static string App_Settings_Path = @"C:\CBS\settings\";
 
         // Common
-        private static string HEART_BEAT = "" + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second;
+        private static string HEART_BEAT = "" + DateTime.UtcNow.Year + DateTime.UtcNow.Month + DateTime.UtcNow.Day + DateTime.UtcNow.Hour + DateTime.UtcNow.Minute + DateTime.UtcNow.Second;
 
         // Timer to save off last time application was alive
-        private static System.Timers.Timer HART_BEAT_TIMER;
+        private static System.Timers.Timer HEART_BEAT_TIMER;
 
         public enum Host_OS { WIN, LINUX };
         public static Host_OS Get_Host_OS()
@@ -83,6 +84,11 @@ namespace CBS
 
         }
 
+        public static string Get_APP_Settings_Path()
+        {
+            return App_Settings_Path;
+        }
+
         public static void Initialize()
         {
             /////////////////////////////////////////////////////////////////
@@ -143,7 +149,7 @@ namespace CBS
 
                 // Here check if there has been more 10min since application has been down
                 TimeSpan TenMin = new TimeSpan(0, 10, 0);
-                TimeSpan AppDown = DateTime.Now - Get_Power_OFF_Time();
+                TimeSpan AppDown = DateTime.UtcNow - Get_Power_OFF_Time();
 
                 if (AppDown > TenMin)
                     ClearSourceDirectory();
@@ -162,9 +168,22 @@ namespace CBS
             }
 
             // Now start heart beat timer.
-            HART_BEAT_TIMER = new System.Timers.Timer(10000); // Set up the timer for 1minute
-            HART_BEAT_TIMER.Elapsed += new ElapsedEventHandler(_HEART_BEAT_timer_Elapsed);
-            HART_BEAT_TIMER.Enabled = true;
+            HEART_BEAT_TIMER = new System.Timers.Timer(10000); // Set up the timer for 1minute
+            HEART_BEAT_TIMER.Elapsed += new ElapsedEventHandler(_HEART_BEAT_timer_Elapsed);
+            HEART_BEAT_TIMER.Enabled = true;
+
+            // Finally start file watcher to process incomming data
+            if (FileWatcherEnabled)
+                FileWatcher.CreateWatcher(Source_Path);
+        }
+
+        public static void Restart_Watcher()
+        {
+            if (FileWatcherEnabled)
+            {
+                FileWatcher.StopWatcher();
+                FileWatcher.CreateWatcher(Source_Path);
+            }
         }
 
         private static void _HEART_BEAT_timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -191,7 +210,7 @@ namespace CBS
             Settings_Data = Settings_Data + "DESTINATION_DIR" + " " + Destination_Path + Environment.NewLine;
 
 
-            Settings_Data = Settings_Data + "HEART_BEAT" + " " + GetDate_Time_AS_YYYYMMDDHHMMSS(DateTime.Now) + Environment.NewLine;
+            Settings_Data = Settings_Data + "HEART_BEAT" + " " + GetDate_Time_AS_YYYYMMDDHHMMSS(DateTime.UtcNow) + Environment.NewLine;
             //////////////////////////////////////////////////////////////////////////////////////
 
             // create a writer and open the file

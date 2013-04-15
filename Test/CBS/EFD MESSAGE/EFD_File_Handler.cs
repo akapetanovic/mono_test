@@ -1,31 +1,57 @@
 using System;
 using System.IO;
+using System.Threading;
 
 namespace CBS
 {
 	public static class EFD_File_Handler
 	{
-		public static void Handle_New_File (string Path)
+        private static StreamReader MyStreamReader;
+
+        public static void Handle_New_File (string Path)
 		{
-			//System.IO.File.Delete(Path);
-			//System.IO.File.Move();
 
-			StreamReader MyStreamReader;
-			// Parse the file and extract all data needed by
-			// CBS
-			MyStreamReader = System.IO.File.OpenText (Path);
+            while (true)
+            {
+                try
+                {
+                    using (MyStreamReader  = System.IO.File.OpenText(Path))
+                    {
+                        if (MyStreamReader != null)
+                        {
+                            //// Pass in stream reader and initialise new
+                            //// EFD message. 
+                            EFD_Msg EDF_MESSAGE = new EFD_Msg(MyStreamReader);
 
-			// Pass in stream reader and initialise new
-			// EFD message. 
-			EFD_Msg EDF_MESSAGE = new EFD_Msg(MyStreamReader);
+                            MyStreamReader.Close();
+                            MyStreamReader.Dispose();
+
+                            //// Generate output
+                            Generate_Output.Generate(EDF_MESSAGE);
+
+                            //// Once done with the file, 
+                            //// lets delete it as we do not
+                            //// needed it any more
+                            try
+                            {
+                                System.IO.File.Delete(Path);
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            break;
+                        }
+                    }
+                }
+                catch (FileNotFoundException ex)
+                {
+                   
+                }
+                Thread.Sleep(500);
+            }
             
-            // Generate output
-			Generate_Output.Generate(EDF_MESSAGE);
-
-			// Once done with the file, 
-			// lets delete it as we do not
-			// needed it any more
-			System.IO.File.Delete(Path);
 		}
 	}
 }
