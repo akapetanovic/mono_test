@@ -16,10 +16,10 @@ public partial class MainWindow: Gtk.Window
 		////////////////////////////////////////////////////////////////////////////
 		// These calls are to be executed in the following order and
 		// are not to be changed
-		CBS_Common.Initialize ();
+		CBS_Main.Initialize ();
 	
-		this.textBox_Source_Destination.Text = CBS_Common.Get_Source_Dir();
-		txt_Box_Destination.Text = CBS_Common.Get_Destination_Dir();
+		this.textBox_Source_Destination.Text = CBS_Main.Get_Source_Dir();
+		txt_Box_Destination.Text = CBS_Main.Get_Destination_Dir();
 		///////////////////////////////////////////////////////////////////////////
 	}
 	

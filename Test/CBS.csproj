@@ -63,6 +63,7 @@
     <Reference Include="Google.KML">
       <HintPath>CBS\KML\Google.KML.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -86,11 +87,12 @@
     <Compile Include="CBS\MIKE GAVANGHAN - GEODETIC\GeodeticMeasurement.cs" />
     <Compile Include="CBS\MIKE GAVANGHAN - GEODETIC\GlobalCoordinates.cs" />
     <Compile Include="CBS\MIKE GAVANGHAN - GEODETIC\GlobalPosition.cs" />
-    <Compile Include="CBS\CBS_Common.cs" />
     <Compile Include="CBS\GeoCordSystem.cs" />
     <Compile Include="CBS\DATA OUTPUT\Generate\Common.cs" />
     <Compile Include="CBS\DATA OUTPUT\Generate\EFD.cs" />
     <Compile Include="CBS\DATA OUTPUT\Generate\Status.cs" />
+    <Compile Include="CBS\CBS_Main.cs" />
+    <Compile Include="CBS\FIX_TO_LATLNG.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
