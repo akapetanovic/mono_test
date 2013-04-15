@@ -13,8 +13,14 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		MainTimer = new System.Timers.Timer (1000); // Set up the timer for 3 seconds
-		MainTimer.Elapsed += new ElapsedEventHandler (_timer_Elapsed);
+		////////////////////////////////////////////////////////////////////////////
+		// These calls are to be executed in the following order and
+		// are not to be changed
+		CBS_Common.Initialize ();
+	
+		this.textBox_Source_Destination.Text = CBS_Common.Get_Source_Dir();
+		txt_Box_Destination.Text = CBS_Common.Get_Destination_Dir();
+		///////////////////////////////////////////////////////////////////////////
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -40,29 +46,8 @@ public partial class MainWindow: Gtk.Window
 		MS.Destroy ();
 	}
 
-	////////////////////////////////////////////////////////////////
-	// This is the main timer that gets enabled once the user
-	// starts proccesing. It will handle all periodical events
-	//
-	void _timer_Elapsed (object sender, ElapsedEventArgs e)
-	{
-		                           
-	}
-
 	protected void OnBtnStartStopClicked (object sender, EventArgs e)
 	{
-		if (this.btn_Start_Stop.Label == "Start") {
-
-			this.btn_Start_Stop.Label = "Stop";
-			MainTimer.Enabled = true; 
-			CBS.FileWatcher.CreateWatcher(this.textBox_Source_Destination.Text);
-
-		} else {
-
-			this.btn_Start_Stop.Label = "Start";
-			MainTimer.Enabled = false;
-			CBS.FileWatcher.StopWatcher();
-		}
 
 	}
 
@@ -72,9 +57,9 @@ public partial class MainWindow: Gtk.Window
 
 		MyStreamReader = System.IO.File.OpenText ("/home/bosnia/EFD/test.log");
 
-			// Pass in stream reader and initialise new
-			// EFD message. 
-			EFD_Msg EDF_MESSAGE = new EFD_Msg(MyStreamReader);
+		// Pass in stream reader and initialise new
+		// EFD message. 
+		EFD_Msg EDF_MESSAGE = new EFD_Msg (MyStreamReader);
 	}
 
 
