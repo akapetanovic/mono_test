@@ -90,9 +90,14 @@
     <Compile Include="CBS\GeoCordSystem.cs" />
     <Compile Include="CBS\DATA OUTPUT\Generate\Common.cs" />
     <Compile Include="CBS\DATA OUTPUT\Generate\EFD.cs" />
-    <Compile Include="CBS\DATA OUTPUT\Generate\Status.cs" />
     <Compile Include="CBS\CBS_Main.cs" />
     <Compile Include="CBS\FIX_TO_LATLNG.cs" />
+    <Compile Include="CBS\DATA OUTPUT\Generate\EFD_AOI_Entry.cs" />
+    <Compile Include="CBS\DATA OUTPUT\Generate\EFD_AOI_Exit.cs" />
+    <Compile Include="CBS\DATA OUTPUT\Generate\EFD_status.cs" />
+    <Compile Include="CBS\DATA OUTPUT\Generate\EFD_Trajectory.cs" />
+    <Compile Include="CBS\DATA OUTPUT\Generate\Main_Status.cs" />
+    <Compile Include="CBS\DATA OUTPUT\Generate\System_Status.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

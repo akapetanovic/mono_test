@@ -4,19 +4,12 @@
     <Files>
       <File FileName="Test/MainWindow.cs" Line="6" Column="18" />
       <File FileName="Test/CBS/DATA OUTPUT/Generate/Common.cs" Line="15" Column="19" />
-      <File FileName="Test/CBS/CBS_Main.cs" Line="118" Column="10" />
+      <File FileName="Test/CBS/CBS_Main.cs" Line="264" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="CBS" expanded="True" selected="True">
-            <Node name="References" expanded="True" />
-            <Node name="CBS" expanded="True">
-              <Node name="DATA OUTPUT" expanded="True">
-                <Node name="Generate" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
+          <Node name="CBS" expanded="True" />
         </State>
       </Pad>
     </Pads>

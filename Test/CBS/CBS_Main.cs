@@ -13,11 +13,13 @@ namespace CBS
         //
         // Will get changed to LINUX paths on Initialise if APP is running
         // on LINUX !!!
-        private static string Source_Path = @"C:\CBS\source\";
-        private static string flights_Path = @"C:\CBS\destination\";
-        private static string App_Settings_Path = @"C:\CBS\settings\";
-        private static string System_Status_Path = @"C:\CBS\systemStatus\";
-        private static string Main_Status_Path = @"C:\CBS\status\";
+        private static string Source_Path = @"C:\var\EFD\";
+        private static string flights_Path = @"C:\var\cbs\prediction\flights\";
+        private static string App_Settings_Path = @"C:\var\cbs\settings\EFD\";
+        private static string System_Status_Path = @"C:\var\cbs\prediction\systemStatus\";
+        private static string Main_Status_Path = @"C:\var\cbs\prediction\status\";
+        private static string AIRAC_Data_Path = @"C:\var\cbs\settings\AIRAC\";
+        private static string Tmp_Directory =  @"C:\tmp";
 
         // Common
         private static string HEART_BEAT = "" + DateTime.UtcNow.Year + DateTime.UtcNow.Month + DateTime.UtcNow.Day + DateTime.UtcNow.Hour + DateTime.UtcNow.Minute + DateTime.UtcNow.Second;
@@ -35,6 +37,17 @@ namespace CBS
         private static System.Timers.Timer System_Status_Timer;
         // Holds System Status periodic rate in seconds
         private static int System_Status_Update_Rate_Sec = 10;
+
+        /////////////////////////////////////////////////
+        // No EFD data reception timout in minutes
+        private static int No_EFD_Data_Timout = 10;
+        private static DateTime Last_EFD_Messsage_Reception_Time = DateTime.UtcNow;
+
+        // Called by the 
+        public static void Notify_EFD_Message_Recived()
+        {
+            Last_EFD_Messsage_Reception_Time = DateTime.UtcNow;
+        }
 
         public enum Host_OS { WIN, LINUX };
         public static Host_OS Get_Host_OS()
@@ -97,6 +110,21 @@ namespace CBS
 
         }
 
+        public static string Get_Temp_Dir()
+        {
+            return Tmp_Directory;
+        }
+
+        public static string Get_AIRAC_Dir()
+        {
+            return AIRAC_Data_Path;
+        }
+
+        public static string Get_System_Status_Dir()
+        {
+            return System_Status_Path;
+        }
+
         public static string Get_APP_Settings_Path()
         {
             return App_Settings_Path;
@@ -114,7 +142,9 @@ namespace CBS
                 flights_Path = "/var/cbs/prediction/flights/";
                 System_Status_Path = "/var/cbs/prediction/systemStatus/";
                 Main_Status_Path = "/var/cbs/prediction/status/";
-                App_Settings_Path = "/var/cbs/settings/";
+                App_Settings_Path = "/var/cbs/settings/EFD/";
+                AIRAC_Data_Path = "/var/cbs/settings/AIRAC/";
+                Tmp_Directory = "/tmp/";
             }
 
             // Now make sure that proper directory structure 
@@ -129,6 +159,10 @@ namespace CBS
                 Directory.CreateDirectory(System_Status_Path);
             if (Directory.Exists(Main_Status_Path) == false)
                 Directory.CreateDirectory(Main_Status_Path);
+            if (Directory.Exists(AIRAC_Data_Path) == false)
+                Directory.CreateDirectory(AIRAC_Data_Path);
+            if (Directory.Exists(Tmp_Directory) == false)
+                Directory.CreateDirectory(Tmp_Directory);
 
             // Check if cbs_config.txt exists, if so load settings
             // data saved from the previous session
@@ -169,6 +203,12 @@ namespace CBS
                                 break;
                             case "SYS_STATUS_UPDATE_RATE":
                                 System_Status_Update_Rate_Sec = int.Parse(words[1]);
+                                break;
+                            case "NO_EFD_DATA_TIMEOUT":
+                                No_EFD_Data_Timout = int.Parse(words[1]);
+                                break;
+                            case "AIRAC_DATA_SOURCE":
+                                AIRAC_Data_Path = words[1];
                                 break;
                             default:
                                 break;
@@ -239,16 +279,19 @@ namespace CBS
             SaveSettings();
         }
 
+        // Periodically call System Status Handler
         private static void System_Status_Periodic_Update(object sender, ElapsedEventArgs e)
         {
-           
+            TimeSpan No_EFD_Data_Time = (DateTime.UtcNow - Last_EFD_Messsage_Reception_Time);
+            TimeSpan Timeout = new TimeSpan(0, No_EFD_Data_Timout, 0);
+            System_Status.Generate((No_EFD_Data_Time > Timeout));
         }
 
         // Deletes all files from the source directory
         public static void ClearSourceDirectory()
         {
             foreach (string directories in Directory.GetDirectories(Source_Path))
-                Directory.Delete(directories, true);  
+                Directory.Delete(directories, true);
         }
 
         public static void SaveSettings()
@@ -281,6 +324,12 @@ namespace CBS
             Settings_Data = Settings_Data + "#" + Environment.NewLine;
             Settings_Data = Settings_Data + "# Number of min after app will power up in cold power up mode" + Environment.NewLine;
             Settings_Data = Settings_Data + "COLD_POWER_UP" + " " + Cold_Start_Timeout_Min.ToString() + Environment.NewLine;
+            Settings_Data = Settings_Data + "#" + Environment.NewLine;
+            Settings_Data = Settings_Data + "# No EFD data recived status reporting timout in minutes" + Environment.NewLine;
+            Settings_Data = Settings_Data + "NO_EFD_DATA_TIMEOUT" + " " + No_EFD_Data_Timout.ToString() + Environment.NewLine;
+            Settings_Data = Settings_Data + "#" + Environment.NewLine;
+            Settings_Data = Settings_Data + "# Destination of the AIRAC data" + Environment.NewLine;
+            Settings_Data = Settings_Data + "AIRAC_DATA_SOURCE" + " " + AIRAC_Data_Path.ToString() + Environment.NewLine;
             //////////////////////////////////////////////////////////////////////////////////////
 
             // create a writer and open the file
