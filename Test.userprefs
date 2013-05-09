@@ -1,15 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Test/CBS/CBS_Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/CBS/DATA OUTPUT/Generate/EFD_status.cs">
     <Files>
-      <File FileName="Test/MainWindow.cs" Line="6" Column="18" />
+      <File FileName="Test/MainWindow.cs" Line="19" Column="26" />
       <File FileName="Test/CBS/DATA OUTPUT/Generate/Common.cs" Line="15" Column="19" />
       <File FileName="Test/CBS/CBS_Main.cs" Line="264" Column="45" />
+      <File FileName="Test/CBS/DATA OUTPUT/Generate/EFD_status.cs" Line="32" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="CBS" expanded="True" />
+          <Node name="CBS" expanded="True">
+            <Node name="UserInterface" expanded="True" />
+            <Node name="CBS" expanded="True">
+              <Node name="DATA OUTPUT" expanded="True">
+                <Node name="Generate" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
