@@ -1,11 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Test/CBS/DATA OUTPUT/Generate/EFD_status.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test/CBS/DATA OUTPUT/Generate_Output.cs">
     <Files>
-      <File FileName="Test/MainWindow.cs" Line="19" Column="26" />
-      <File FileName="Test/CBS/DATA OUTPUT/Generate/Common.cs" Line="15" Column="19" />
-      <File FileName="Test/CBS/CBS_Main.cs" Line="264" Column="45" />
-      <File FileName="Test/CBS/DATA OUTPUT/Generate/EFD_status.cs" Line="32" Column="33" />
+      <File FileName="Test/MainWindow.cs" Line="65" Column="33" />
+      <File FileName="Test/CBS/DATA OUTPUT/Generate/Common.cs" Line="20" Column="43" />
+      <File FileName="Test/CBS/CBS_Main.cs" Line="17" Column="9" />
+      <File FileName="Test/CBS/DATA OUTPUT/Generate/EFD_status.cs" Line="1" Column="1" />
+      <File FileName="Test/CBS/EFD MESSAGE/EFD_Msg.cs" Line="43" Column="3" />
+      <File FileName="Test/CBS/DATA OUTPUT/Generate_Output.cs" Line="12" Column="62" />
+      <File FileName="Test/CBS/EFD MESSAGE/EFD_File_Handler.cs" Line="29" Column="53" />
+      <File FileName="Test/CBS/File Watcher/FileWatcher.cs" Line="15" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,8 +18,11 @@
             <Node name="UserInterface" expanded="True" />
             <Node name="CBS" expanded="True">
               <Node name="DATA OUTPUT" expanded="True">
-                <Node name="Generate" expanded="True" selected="True" />
+                <Node name="Generate" expanded="True" />
+                <Node name="Generate_Output.cs" selected="True" />
               </Node>
+              <Node name="EFD MESSAGE" expanded="True" />
+              <Node name="File Watcher" expanded="True" />
             </Node>
           </Node>
         </State>
